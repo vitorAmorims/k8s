@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minikube-dotnet
+spec:
+  selector:
+    app: minikube-dotnet
+  type: NodePort
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2026-06-10T12:18:04Z"
+  labels:
+    app: minikube-dotnet
+  name: minikube-dotnet
+  namespace: default
+  resourceVersion: "786"
+  uid: d1701e13-7b92-46cf-a899-953bef3d091c
+spec:
+  clusterIP: 10.108.45.33
+  clusterIPs:
+  - 10.108.45.33
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30605
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: minikube-dotnet
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

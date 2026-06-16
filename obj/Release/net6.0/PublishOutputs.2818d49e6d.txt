@@ -1,0 +1,11 @@
+/home/vitor/curso_docker/simples/published/simples
+/home/vitor/curso_docker/simples/published/appsettings.Development.json
+/home/vitor/curso_docker/simples/published/appsettings.json
+/home/vitor/curso_docker/simples/published/simples.dll
+/home/vitor/curso_docker/simples/published/simples.deps.json
+/home/vitor/curso_docker/simples/published/simples.runtimeconfig.json
+/home/vitor/curso_docker/simples/published/simples.pdb
+/home/vitor/curso_docker/simples/published/Microsoft.OpenApi.dll
+/home/vitor/curso_docker/simples/published/Swashbuckle.AspNetCore.Swagger.dll
+/home/vitor/curso_docker/simples/published/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/vitor/curso_docker/simples/published/Swashbuckle.AspNetCore.SwaggerUI.dll
