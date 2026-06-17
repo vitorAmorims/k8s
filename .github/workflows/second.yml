@@ -8,4 +8,4 @@ jobs:
 
     steps:
       - name: Say Hello
-        run: 'Hello from the second workflow!'
+        run: echo "Hello from the second workflow!"
