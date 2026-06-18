@@ -1,4 +1,4 @@
-name: second CI
+name: carry on dependencies CI
 
 on:
   # push
