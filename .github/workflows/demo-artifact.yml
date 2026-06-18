@@ -1,0 +1,21 @@
+name: demo artifact
+
+on:
+  # push
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create Demo File
+        run: |
+          echo "Hello from CI Pipeline" > demo.txt
+          echo "File created successfully"
+
+      - name: Upload Demo
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact-demo
+          path: . #any path
