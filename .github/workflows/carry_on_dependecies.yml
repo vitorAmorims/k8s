@@ -1,0 +1,21 @@
+name: second CI
+
+on:
+  # push
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say Hello
+        run: echo "Hello from the second workflow!"
+
+  tests:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Teste Job
+        run: echo "running teste job with depency build"
