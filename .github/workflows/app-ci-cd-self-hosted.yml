@@ -60,4 +60,5 @@ jobs:
 
       - name: Executar o Deploy no cluster
         run: |
-          kubectl set image deployment/minikube-dotnet container-dotnet=vtamorims/hello-dotnet:7
+          kubectl apply -f k8s/minikube-dotnet.yaml
+          kubectl set image deployment/minikube-dotnet container-dotnet=vtamorims/hello-dotnet:${{ github.sha }}
