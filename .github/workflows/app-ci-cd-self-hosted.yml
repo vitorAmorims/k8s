@@ -60,4 +60,4 @@ jobs:
 
       - name: Executar o Deploy no cluster
         run: |
-          kubectl set image deployment/hello-dotnet-minikube container-dotnet=vtamorims/hello-dotnet:7
+          kubectl set image deployment/minikube-dotnet container-dotnet=vtamorims/hello-dotnet:7
