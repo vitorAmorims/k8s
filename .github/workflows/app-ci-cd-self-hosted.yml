@@ -58,10 +58,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v5
 
-      - name: Executar o Deploy no cluster
+      - name: Executar o Deploy no cluster minikube
         run: |
           kubectl apply -f k8s/config.yaml
-          # kubectl apply -f k8s/secret.yaml
-          # kubectl apply -f k8s/service.yaml
-          kubectl apply -f k8s/minikube-dotnet.yaml
+          kubectl apply -f k8s/secret.yaml
+          kubectl apply -f k8s/minikube-dotnet.yaml 
           kubectl set image deployment/minikube-dotnet hello-dotnet=vtamorims/hello-dotnet:${{ github.run_number }}
