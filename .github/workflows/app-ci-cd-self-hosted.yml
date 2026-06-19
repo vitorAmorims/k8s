@@ -1,0 +1,63 @@
+name: app CI with CD self-hosted
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Setup .NET
+        uses: actions/checkout@v6
+        with:
+          dotnet-version: '6.0'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build application
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Execute tests
+        run: dotnet test --no-build --verbosity normal
+
+  docker-build-push:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets['DOCKERHUB_USERNAME'] }}/hello-dotnet:${{ github.run_number }}
+
+  deploy-minikube-self-hosted:
+    runs-on: self-hosted
+    needs: docker-build-push
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Executar o Deploy no cluster
+        run: |
+          kubectl set image deployment/hello-dotnet-minikube container-dotnet=vtamorims/hello-dotnet:${{ github.run_number }}
